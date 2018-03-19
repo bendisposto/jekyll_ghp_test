@@ -1,3 +1,8 @@
+language: java
+
+install: /bin/true
+script: /bin/true
+
 deploy:
   provider: pages
   skip-cleanup: true
