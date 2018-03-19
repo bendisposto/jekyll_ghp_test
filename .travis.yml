@@ -1,6 +1,5 @@
-language: java
-install: "/bin/true"
-script: "/bin/true"
+language: ruby
+
 deploy:
   provider: pages
   skip-cleanup: true
