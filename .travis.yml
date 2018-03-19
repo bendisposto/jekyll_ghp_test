@@ -1,7 +1,8 @@
 language: java
 
-install: /bin/true
-script: /bin/true
+script: lein uberjar
+
+after_success: java -jar target/uberjar/hyde-0.1.0-SNAPSHOT-standalone.jar
 
 deploy:
   provider: pages
