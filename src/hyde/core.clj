@@ -13,20 +13,32 @@
                             {ort :name} :venue
                             datum :time
                             eintrag :updated
-                            link :link}]
+                            link :link
+                            id :id}]
+  {:ort ort
+   :id id
+   :link link
+   :eintrag (java.util.Date. eintrag)
+   :datum (java.util.Date. datum)
+   :titel titel
+   :beschreibung beschreibung})
+
+
+(defn render [{:keys [beschreibung eintrag ort link titel datum]}]
   (format "---
 layout: post
 date: %1$tY-%1$tm-%1$td 14:55:05 +0100
-datum: %2$td.%2$tm.%2$tY 18:30 Uhr
 title: \"%3$s\"
 categories: rheinjug event
-link: %4$s
-ort: %5$s
 ---
-%6$s"
+# %3$s
+Am %2$td.%2$tm.%2$tY 18:30 Uhr
+Ort: %5$s
+%6$s
+Anmeldung: %4$s"
 
-          (java.util.Date. eintrag)
-          (java.util.Date. datum)
+          eintrag
+          datum
           titel
           link
           ort
@@ -35,10 +47,8 @@ ort: %5$s
 
 (defn -main
   [& args]
-  (doseq [{id :id :as event} data]
-    (spit (str "_posts/" id "-meetup.md")
-          (extract-render-data event)))
-  )
-
+  (doseq [{eintrag :eintrag id :id :as event} (map extract-render-data data)]
+    (spit (format "%1$tY-%1$tm-%1$td-%2$s.markdown" eintrag id)
+          (extract-render-data event))))
 
 
