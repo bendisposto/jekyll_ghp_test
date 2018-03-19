@@ -48,7 +48,8 @@ Anmeldung: %4$s"
 (defn -main
   [& args]
   (doseq [{eintrag :eintrag id :id :as event} (map extract-render-data data)]
-    (spit (format "%1$tY-%1$tm-%1$td-%2$s.markdown" eintrag id)
-          (extract-render-data event))))
+    (spit (format "_posts/%1$tY-%1$tm-%1$td-%2$s.markdown" eintrag id) (render event))))
+
+
 
 
