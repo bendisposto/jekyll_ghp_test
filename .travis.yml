@@ -1,0 +1,21 @@
+language: java
+
+script: lein uberjar
+
+after_success: java -jar target/uberjar/hyde-0.1.0-SNAPSHOT-standalone.jar
+
+before_deploy:
+  - rm -rf src
+  - rm -f project.clj
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: "$GITHUB_TOKEN"
+  keep-history: false
+  target-branch: gh-pages
+  on:
+    branch: master
+env:
+  global:
+    secure: aKIiKrvzRefeSy3erBxTHLP3rRDlhMgpCihdoteknaVXa2H2Dk659FElTQEZjov1MX+I6K7ZAcPDD0lkAOIH6x95dSwhTX5oVErrSbIY0Ifkg428j6Qbx+HTsaWufLpCTVOobelIQL6Jh18WAR3geLLMaeVNT3gCU0e7k8c7namW6EFE99Y9vI1gs+Aav9NodKqdTXlZ6fseGWA7j9AgyOybrw8x+LgtGNaPlBcyUALAMCi4D27aU9CZ8kToMu7ioy5b1i28gD6GesM7i4xFAU2Agw1Pks3YXhtrc3m+PQWw+3tuhblaEPCKxLaotIFWhyeRSAUi4+eBzWDF3XOzWWmkcPZjYUwe87qZI+3qB4GSH6VQC9L6Z8FxIVE7RHjsQ63YfkHYkaLEt3kiEszuFGq8xUODvYF/g27VuHAIM2r//f9v0pxmWKdxN5yB8nt3uIXU3CIC0VOqGs1gpxQKw3vSotAVT/Au7sCi0ykdBAuO/1h+OAz2UCbVLZcSTXWr6fTNCK23IpOvD3LEAoxraOQ5JZ2XEAkTac/u0nOyR/+ujls5AK8UaRE9HNtbrpnHTkO8YJRmSfldWBCJAhxT56joLcppOZ7TlAFz+QXjuU5oA7kqcngURjr+4oi6xx55oBd4sqgOUoUf1gXnrNrEXl1jlqOtxu76NCbmyiJze6M=
