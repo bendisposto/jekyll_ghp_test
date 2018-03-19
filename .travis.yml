@@ -4,6 +4,10 @@ script: lein uberjar
 
 after_success: java -jar target/uberjar/hyde-0.1.0-SNAPSHOT-standalone.jar
 
+before_deploy:
+  - rm -rf src
+  - rm -f project.clj
+
 deploy:
   provider: pages
   skip-cleanup: true
