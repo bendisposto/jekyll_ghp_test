@@ -36,7 +36,7 @@ ort: %5$s
 (defn -main
   [& args]
   (doseq [{id :id :as event} data]
-    (spit (str "_posts" id "-meetup.md")
+    (spit (str "_posts/" id "-meetup.md")
           (extract-render-data event)))
   )
 
