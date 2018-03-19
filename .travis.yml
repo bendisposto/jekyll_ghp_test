@@ -1,4 +1,7 @@
-language: ruby
+language: java
+
+install: /bin/true
+script: /bin/true
 
 deploy:
   provider: pages
