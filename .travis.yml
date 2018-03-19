@@ -1,1 +1,8 @@
-language: java
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
+  keep-history: false
+  target-branch: gh-pages
+  on:
+    branch: master
